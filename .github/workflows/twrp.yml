@@ -49,7 +49,7 @@ jobs:
           mkdir twrp
           cd twrp
           repo init -u $MANIFEST --depth=1
-          repo sync -c -j8 --force-sync --no-clone-bundle --no-tags
+          repo sync -c -j4 --force-sync --no-clone-bundle --no-tags
           rm -rf .repo
              
        - name: Checkout device tree
@@ -61,7 +61,7 @@ jobs:
          run: |
               PATH=~/bin:$PATH
               cd twrp
-              export ALLOW_MISSING_DEPENDENCIES=true && source build/envsetup.sh &&lunch twrp_camellia-eng && mka $TARGET -j2
+              export ALLOW_MISSING_DEPENDENCIES=true && source build/envsetup.sh &&lunch twrp_camellia-eng && mka $TARGET -j4
               cp  out/target/product/camellia/boot.img    out/target/product/camellia/boot-camellia-main-$(date +"%Y%m%d-%H%M").img  
              
        - name: Release recovery image
